@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Etsydemo</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'default', 'data-turbolinks-track' => true %> 
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+<script>
+  +function(l,y,t,i,c,s) {
+      l['LocalyticsGlobal'] = i;
+      l[i] = function() { (l[i].q = l[i].q || []).push(arguments) };
+      l[i].t = +new Date;
+      (s = y.createElement(t)).type = 'text/javascript';
+      s.src = '//web.localytics.com/v3/localytics.js';
+      (c = y.getElementsByTagName(t)[0]).parentNode.insertBefore(s, c);
+      ll('init', '0336d118893a5e43ee90f2f-9662c2a4-0257-11e6-8306-0086bc74ca0f', {} /* Options */);
+  }(window, document, 'script', 'll');
+</script>
+  
+</head>
+<body>
+
+<%= render 'layouts/header'%>
+
+<div class="container">
+
+	<% flash.each do |name, msg| %>
+		<% if msg.is_a?(String) %>
+			<div class="alert alert-info alert-dismissible" role="alert">
+  				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ 				 <%= content_tag :div, msg, :id => "flash_#{name}" %>
+				</div>
+		<% end %>
+	<% end %>
+ 	
+	<%= yield %>
+
+	<%= render 'layouts/footer'%>
+</div>
+
+</body>
+</html>
